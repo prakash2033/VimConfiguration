@@ -9,7 +9,7 @@ if has("gui_running")
 	set guioptions=aegitM
 
 else
-	colorscheme tfl
+	colorscheme plv
 	set ttyfast
 endif
 
@@ -22,6 +22,19 @@ endif
 for p in [globpath(",", "$HOME/.vim/plugin/*.vim")]
 	if filereadable(p) | source p | endif
 endfor
+
+" Extras for treating every document same
+"set nolinebreak
+"set nowrap
+set noshowmatch
+set ruler
+set nocursorline
+set relativenumber
+set number
+set cursorline
+
+
+
 
 set showmode
 set ttimeout
