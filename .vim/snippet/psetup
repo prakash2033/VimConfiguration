@@ -1,0 +1,37 @@
+use strict;
+use warnings;
+use autodie;
+use File::Basename 'basename';
+use TFL; # <-- libtfl-perl
+
+my $_VERSION_ = "";
+my $_PROJECT_ = basename($0);
+
+sub USAGE{
+	my $INFO = qq{            @{[uc($_PROJECT_)]} ($_VERSION_)
+		            (prakash2033\@outlook.com)
+
+		            ...
+
+		SYNTAX:     $_PROJECT_ [OPTS]
+
+		OPTS:       --help|-h|-?            - Displays this help information.
+		            --version|-v            - Output only the version datestamp.
+	};
+
+	print($INFO =~ tr/\t//dr)
+}
+
+while(defined($ARGV[0])){
+	if($ARGV[0] =~ /^(--help|-h|-\?)$/){
+		USAGE(1); exit 0
+	}elsif($ARGV[0] =~ /^(--version|-v)$/){
+		print("$_VERSION_\n"); exit 0
+	}else{
+		TFL::FAIL(1, __LINE__, "Incorrect argument(s) specified")
+	}
+
+	shift(@ARGV)
+}
+
+#TFL::FAIL(1, __LINE__, "Root access is required") unless $> == 0;
